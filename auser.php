@@ -7,6 +7,21 @@ if (isset($_SESSION['UNAME']) && isset($_SESSION['role'])) {
   $role = $_SESSION['role'];
 }
 
+$serv = "localhost";
+$user = "root";
+$pass = "";
+$db = "netman";
+
+$conn = new mysqli($serv,$user,$pass,$db);
+if($conn->connect_error){
+	echo "<br>";
+	echo "<div align = 'center'>";
+	echo "Internal Database Error !";
+	echo "</div>";
+	echo "<script>setTimeout(function(){window.location.href='index.html'},2200);</script>";
+}
+
+
 
 echo '
 <!DOCTYPE html>
@@ -161,6 +176,19 @@ echo '
                 <div class="card-body">
                   <p> Hi '.$uname.' </p>
 
+
+                </div>
+                <h4>Existing Users</h4>
+                <div class="card">
+                  <table border="1"><tr><th>FirstName</th><th>LastName</th><th>Email</th><th>Role</th></tr>';
+                  $sql = "select * from reg";
+                  $res = $conn->query($sql);
+                  if($res->num_rows > 0){
+                    while($row = $res->fetch_assoc()){
+                      echo "<tr><td>" . $row['fname'] . "</td><td>" . $row['lname'] . "</td><td>" . $row['email'] . "</td><td>" . $row['role'] . "</td></tr>";
+                    }
+                  }
+                  echo '</table>
                 </div>
               </div><br>
               <h4>Adding User</h4>
