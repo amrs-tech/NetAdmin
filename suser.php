@@ -1,3 +1,14 @@
+<?php
+$uname = '';
+$role = '';
+session_start();
+if (isset($_SESSION['UNAME']) && isset($_SESSION['role'])) {
+  $uname = $_SESSION['UNAME'];
+  $role = $_SESSION['role'];
+}
+
+
+echo '
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,9 +58,9 @@
         </div>
       </form>-->
 
-      <!-- Navbar
+
       <ul class="navbar-nav ml-auto ml-md-0">
-        <li class="nav-item dropdown no-arrow mx-1">
+        <!--<li class="nav-item dropdown no-arrow mx-1">
           <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-bell fa-fw"></i>
             <span class="badge badge-danger">9+</span>
@@ -72,20 +83,18 @@
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
-        </li>
+        </li>-->
         <li class="nav-item dropdown no-arrow">
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-user-circle fa-fw"></i>
+            <i class="fas fa-user-circle fa-fw">'.$uname.'</i>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="#">Settings</a>
-            <a class="dropdown-item" href="#">Activity Log</a>
-            <a class="dropdown-item" href="login.html">Login</a>
+
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+            <a class="dropdown-item" href="logout.php" >Logout</a>
           </div>
         </li>
-      </ul> -->
+      </ul>
 
     </nav>
 
@@ -94,15 +103,9 @@
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="#" onclick="alert('You must login!');">
+          <a class="nav-link" href="dashboard.html">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span>
-          </a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="login.html">
-            <i class="fas fa-fw fa-user-circle"></i>
-            <span>Login</span>
           </a>
         </li>
         <!-- <li class="nav-item dropdown">
@@ -139,25 +142,30 @@
 
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
-            Home
-            <!-- <li class="breadcrumb-item">
+            <li class="breadcrumb-item">
               <a href="#">Home</a>
             </li>
-            <li class="breadcrumb-item active">Overview</li> -->
+            <li class="breadcrumb-item active">Overview</li>
           </ol>
           <!-- Login categories -->
           <div class="card mb-3">
             <div class="card-header">
-              <i class="fas fa-user-circle fa-fw"></i>
-              Welcome !
+              <i class="fas fa-user-circle fa-fw"></i>'.
+              $role.' Level
               </div>
             <div class="card-body" id="userLevel">
               <div class="card">
                 <div class="card-body">
-                  Welcome to the Network Management Portal.
+                  <p> Hi '.$uname.'</p>
 
                 </div>
-              </div>
+                <div class="card-body">
+                  <p> Hi '.$uname.'. You are Semi-Admin</p>
+
+                </div>
+              </div><br>
+              
+
             </div>
 
           </div>
@@ -797,3 +805,8 @@
   </body>
 
 </html>
+
+
+';
+
+?>

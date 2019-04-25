@@ -86,7 +86,7 @@ echo '
         </li>-->
         <li class="nav-item dropdown no-arrow">
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-user-circle fa-fw"></i>
+            <i class="fas fa-user-circle fa-fw">'.$uname.'</i>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
 
@@ -156,14 +156,30 @@ echo '
             <div class="card-body" id="userLevel">
               <div class="card">
                 <div class="card-body">
-                  <p> Hi '.$uname.' </p>
+                  <p> Hi '.$uname.'</p>
 
                 </div>
                 <div class="card-body">
-                  <p> Hi '.$uname.' </p>
+                  <p> Hi '.$uname.'. You are simple user</p>
 
                 </div>
+              </div><br>
+              <h4>Adding User</h4>
+              <div class="card">
+                <form action="admin_add.php" method="post" id="userform">
+                  <input type="text" name="fname" placeholder="First Name" required>
+                  &nbsp;&nbsp;
+                  <input type="text" name="lname" placeholder="Last Name" required>
+                  <br><br>
+                  <input type="email" name="email" placeholder="Email" required>
+                  &nbsp;&nbsp;
+                  <input type="password" name="pas" value="password" required><span>(default password: password)</span>
+                  <br><br>
+                  <input type="radio" name="role" value="User" required>User</input>&nbsp;&nbsp;<input type="radio" name="role" value="Semi-Admin" required>Semi-Admin</input><br><br>
+                  <input type="submit" name="sub" value="Add">
+                </form>
               </div>
+
             </div>
 
           </div>
@@ -803,6 +819,7 @@ echo '
   </body>
 
 </html>
+
 
 ';
 
